@@ -79,12 +79,14 @@ Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato” 
 
 
     // CHECK DEL PARAMETRO
-
-    if (strlen($name) <= 3) {
+    if (empty($name) || empty($mail) || empty($age)) {
+        echo "Error, insert all parameters";
+    }
+    elseif (strlen($name) <= 3) {
         echo 'Please enter a valid name (longer than 3 characters)';
     } elseif (strpos($mail, '@') === false || strpos($mail, '.') === false) {
     echo "Please enter a valid mail which contains '@' and '.'";
-    } elseif (is_nan($age) == true || $age === 0) {
+    } elseif (is_nan($age) == true) {
         echo 'Please enter a valid number';
     } else {
         echo 'Registration completed' . "<br/>";
@@ -106,11 +108,21 @@ $numbers = [];
         }           
         $numbers[] = $number;
     }
-    var_dump($numbers);
-    
-    
-    
-    
+    var_dump($numbers);  
 ?>
+
+<?php
+    $max_numbers = 15;
+    $numeri = [];
+
+    while (count($numeri) < $max_numbers) {
+        $numero = rand(1, 15);
+        if(!in_array($numero, $numeri)) {
+            $numeri[] = $numero;
+        }
+    }var_dump($numeri);
+?>
+
+
 </body>
 </html>
